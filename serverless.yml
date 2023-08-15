@@ -1,0 +1,19 @@
+service: tooling-jest-docker-plus
+frameworkVersion: '3'
+
+plugins: 
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  environment:
+    LOCALSTACK_HOST: ${env:LOCALSTACK_HOST, "localhost"}
+
+functions:
+  api:
+    handler: src/index.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
