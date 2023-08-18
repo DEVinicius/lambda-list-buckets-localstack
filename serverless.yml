@@ -9,6 +9,16 @@ provider:
   runtime: nodejs14.x
   environment:
     LOCALSTACK_HOST: ${env:LOCALSTACK_HOST, "localhost"}
+  iam:
+    role:
+      statements: 
+        - Effect: Allow
+          Action: s3:ListAllMyBuckets
+          Resource: '*'
+
+custom:
+  serverless-offline:
+    host: 0.0.0.0
 
 functions:
   api:
